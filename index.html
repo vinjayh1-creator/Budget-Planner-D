@@ -32,7 +32,7 @@ main{margin-left:245px;width:calc(100% - 245px);padding:28px;max-width:1500px}.m
 .goal{border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}.goal-top{display:flex;justify-content:space-between;gap:10px}.progress{height:8px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:12px}.progress>div{height:100%;background:var(--primary);border-radius:99px}.toggle{display:flex;gap:8px;margin-bottom:15px}.toggle button{flex:1;padding:10px;border:1px solid var(--border);background:var(--card);color:var(--muted);border-radius:10px}.toggle button.active{background:var(--soft);color:var(--primary);border-color:var(--primary)}
 .notice{padding:12px;border-radius:10px;background:var(--soft);color:var(--text);font-size:13px;margin-bottom:15px}.danger{color:var(--red)!important}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.quick-btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;padding:13px;text-align:left}.quick-btn strong{display:block;margin-top:5px}.site-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.global-toggle{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}.global-toggle input{width:18px;height:18px;accent-color:var(--primary)}
 @media(max-width:950px){.cards{grid-template-columns:repeat(2,1fr)}.section-grid{grid-template-columns:1fr}.quick-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:700px){aside{display:none}.app{display:block}main{margin:0;width:100%;padding:16px 14px 88px}.mobile-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.mobile-head .brand{padding:0;font-size:18px}.topbar{display:block}.topbar h1{font-size:23px}.month-nav{margin-top:12px}.cards{grid-template-columns:1fr 1fr;gap:10px}.card{padding:14px;border-radius:13px}.stat-value{font-size:19px}.table{min-width:650px}.bottom-nav{position:fixed;display:grid;grid-template-columns:repeat(5,1fr);bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);z-index:20;padding:7px 4px}.bottom-nav button{border:0;background:transparent;color:var(--muted);font-size:10px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px}.bottom-nav button.active{color:var(--primary)}.form-grid{grid-template-columns:1fr}.site-controls{align-items:flex-start;flex-direction:column}}
+@media(max-width:700px){aside{display:none}.app{display:block}main{margin:0;width:100%;padding:16px 14px 88px}.mobile-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.mobile-head .brand{padding:0;font-size:18px}.topbar{display:block}.topbar h1{font-size:23px}.month-nav{margin-top:12px}.cards{grid-template-columns:1fr 1fr;gap:10px}.card{padding:14px;border-radius:13px}.stat-value{font-size:19px}.table{min-width:650px}.bottom-nav{position:fixed;display:grid;grid-template-columns:repeat(4,1fr);bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);z-index:20;padding:7px 4px}.bottom-nav button{border:0;background:transparent;color:var(--muted);font-size:10px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px}.bottom-nav button.active{color:var(--primary)}.form-grid{grid-template-columns:1fr}.site-controls{align-items:flex-start;flex-direction:column}}
 @media(min-width:701px){.bottom-nav{display:none}}
 /* iPhone / iOS Home Screen app compatibility */
 html {
@@ -2151,8 +2151,8 @@ ${(()=>{
   </div>
 </div>
 <div class="card dashboard-recurring-summary">
-  <div class="section-title"><span style="display:flex;align-items:center;gap:8px"><i data-lucide="repeat"></i>Vaste kosten & wekelijks loon</span></div>
-  <div class="small">Je vaste maandelijkse uitgaven en je wekelijkse loon.</div>
+  <div class="section-title"><span style="display:flex;align-items:center;gap:8px"><i data-lucide="repeat"></i>Vaste kosten</span></div>
+  <div class="small">Je vaste maandelijkse uitgaven.</div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:13px">
     <div style="padding:11px;border:1px solid var(--border);border-radius:12px;background:var(--card)">
       <div class="small">Vaste kosten per maand</div>
@@ -3742,6 +3742,36 @@ try {
 } catch (e) {}
 </script>
 
+
+<style id="vriendin-cleanup-final">
+/* Vriendin-versie: verwijder Crypto/Pokémon volledig uit de interface */
+#crypto,
+nav button[data-view="crypto"],
+.bottom-nav button[data-view="crypto"],
+#dashboard .dashboard-crypto-pokemon-card,
+.crypto-pokemon-summary,
+.dashboard-investment-grid,
+/* Geen Revolut-tegels of -velden in deze vereenvoudigde versie */
+.revolut-balance-grid,
+#revolutSubaccounts,
+.revolut-main-row,
+.revolut-subaccount-transactions,
+#revolutTransferFrom,
+#revolutTransferTo,
+#revolutTransferAmount,
+#revolutTransferNote,
+#transferRevolutAmount,
+/* Wekelijks loon is niet van toepassing */
+#recurring .card:has(#weeklySalaryAmount),
+#dashboard .dashboard-recurring-summary > div[style*="grid-template-columns:1fr 1fr"] > div:nth-child(2) {
+  display:none !important;
+}
+#dashboard .dashboard-recurring-summary .section-title {font-size:0}
+#dashboard .dashboard-recurring-summary .section-title:after {content:"Vaste kosten";font-size:16px}
+#dashboard .dashboard-recurring-summary > .small {font-size:0}
+#dashboard .dashboard-recurring-summary > .small:after {content:"Je vaste maandelijkse uitgaven.";font-size:12px}
+</style>
+
 </body>
 
 <style id="dashboard-revolut-subaccount-transactions">
@@ -4041,6 +4071,56 @@ try {
 }
 </style>
 
+
+
+<style id="vriendin-feature-removal-audit">
+/* Alleen de algemene budgetplanner blijft zichtbaar. */
+nav button[data-view="crypto"], .bottom-nav button[data-view="crypto"],
+nav button[data-view="dealplug"], .bottom-nav button[data-view="dealplug"],
+#crypto, #dealplug,
+#dashboard .dashboard-crypto-pokemon-card, #dashboard .dealplug-dashboard-card,
+.crypto-pokemon-summary, .dashboard-investment-grid,
+#dashboard .dashboard-revolut-details,
+#accounts [class*="revolut"], #accounts [class*="crypto"],
+#transactions .revolut-balance-grid, #transactions [class*="revolut-subaccount"],
+#transactions [id*="revolutTransfer"], #transactions [id*="transferRevolut"],
+#recurring .card:has(#weeklySalaryAmount),
+#dashboard .dashboard-recurring-summary > div[style*="grid-template-columns:1fr 1fr"] > div:nth-child(2),
+.dealplug-dashboard-card, [class*="pokemon-"], [id*="pokemon"],
+[class*="crypto-pokemon"] { display:none !important; }
+#dashboard .dashboard-recurring-summary .section-title {font-size:0 !important;}
+#dashboard .dashboard-recurring-summary .section-title:after {content:"Vaste kosten";font-size:16px;}
+#dashboard .dashboard-recurring-summary > .small {font-size:0 !important;}
+#dashboard .dashboard-recurring-summary > .small:after {content:"Je vaste maandelijkse uitgaven.";font-size:12px;}
+.bottom-nav {grid-template-columns:repeat(4,minmax(0,1fr)) !important;}
+</style>
+<script id="vriendin-feature-removal-data-cleanup">
+(function(){
+  // Verwijder alleen deze functies uit de kopie voor je vriendin; eigen versie blijft onaangeraakt.
+  try {
+    const key = "budgetPlannerVriendinV1";
+    const saved = JSON.parse(localStorage.getItem(key) || "null");
+    if (saved) {
+      saved.dealplug = {opening:0, entries:[]};
+      saved.cryptoEntries = [];
+      saved.pokemonCards = [];
+      saved.pokemonInitialInvestment = 0;
+      saved.pokemonInitialInvestmentSet = false;
+      saved.pokemonCurrentValue = 0;
+      saved.pokemonCurrentValueSet = false;
+      saved.weeklySalary = {enabled:false, amount:0, accountId:saved.accounts?.[0]?.id || "acc1", description:""};
+      localStorage.setItem(key, JSON.stringify(saved));
+    }
+  } catch (e) {}
+  // Verwijder de navigatie-items fysiek uit de DOM (verborgen CSS alleen is niet genoeg).
+  document.querySelectorAll('nav button[data-view="crypto"], .bottom-nav button[data-view="crypto"], nav button[data-view="dealplug"], .bottom-nav button[data-view="dealplug"]').forEach(el=>el.remove());
+  // Verberg en leeg de featurepanelen zodat ze niet opnieuw in de interface verschijnen.
+  ["crypto","dealplug"].forEach(id=>{const el=document.getElementById(id);if(el){el.innerHTML="";el.style.display="none";}});
+  document.querySelectorAll('#dashboard .dashboard-crypto-pokemon-card, #dashboard .dealplug-dashboard-card').forEach(el=>el.remove());
+  document.querySelectorAll('#accounts [class*="revolut"], #accounts [class*="crypto"]').forEach(el=>el.remove());
+  document.querySelectorAll('#transactions .revolut-balance-grid, #transactions [class*="revolut-subaccount"], #transactions [id*="revolutTransfer"], #transactions [id*="transferRevolut"]').forEach(el=>el.remove());
+})();
+</script>
 
 </html>
 
